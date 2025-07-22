@@ -26,9 +26,9 @@ git clone https://github.com/Asemzaidan2003/job_tracker.git
 ### 2. Setup the Backend
 use terminal to go to : cd ./backend
 then Create a .env file and add the following line
-
+```bash
 MONGO_URI=mongodb://localhost:27017/job_tracker
-
+```
 You can use your own MongoDB Cloud URI if you prefer
 
 Install dependencies
