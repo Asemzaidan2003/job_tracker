@@ -12,7 +12,7 @@ import { IoMdCloseCircle } from "react-icons/io";
 function App() {
 const [model , setModel] = useState(false);
 
-const statusList = [
+const statusList = [ 
   { value: "All" },
   { value: "Active" },
   { value: "Archived" },
