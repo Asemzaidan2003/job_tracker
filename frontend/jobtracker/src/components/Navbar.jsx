@@ -1,6 +1,10 @@
 import { FaGithub , FaPlusSquare } from "react-icons/fa"
 import BlurButton from "./BlurButton"
+import Model from "./Model"
+import Card from "./Card"
+import { useState } from "react"
 const Navbar = () => {
+  const [model , setModel] = useState(false)
   return (
     <>
     <div className="flex justify-between items-center p-4 bg-surface">
@@ -24,10 +28,15 @@ const Navbar = () => {
           blurColor="secondary"
           borderColor="secondary"
           bg_color="surface"
-          handleClick={() => alert("This button will redirect you to the donation page.")}
+          handleClick={() => setModel(true)}
         />
       </div>
     </div>
+    {model && 
+      <Model setModel={setModel}>
+        <h1>hi from coffee</h1>
+      </Model>
+    }
     </>
   )
 }

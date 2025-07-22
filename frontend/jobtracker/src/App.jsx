@@ -6,8 +6,12 @@ import OptionsList from "./components/OptionsList"
 import Table from "./components/Table"
 import { FaSearch , FaPlusSquare} from "react-icons/fa"
 import Button from "./components/Button"
-
+import Model from "./components/Model"
+import {useState} from 'react'
+import { IoMdCloseCircle } from "react-icons/io";
 function App() {
+const [model , setModel] = useState(false);
+
 const statusList = [
   { value: "All" },
   { value: "Active" },
@@ -25,6 +29,41 @@ const statusList = [
   return (
     <>
       <Navbar />
+      {model && 
+        <Model setModel={setModel} >
+            <div className="flex justify-between">
+              <div>
+                <h1 className="text-base sm:text-2xl md:text-4xl  font-inter font-bold">Add Application</h1>
+              </div>
+              <div className="flex w-12 items-center justify-center">
+                  <IoMdCloseCircle
+                  className="w-6 h-6 sm:w-8 sm:h-8 text-error cursor-pointer hover:text-red-600"
+                  size={32}
+                  onClick={() => setModel(false)}
+                  />
+              </div>
+            </div>
+            <div className="container p-2">
+              <div className="grid grid-cols-2 justify-center">
+                <Bean 
+                  className="sm:w-full"
+                  component={<TextInput text="Search Applications" />}
+                  icon={<FaSearch className="text-text-secondary" />}
+                />
+                <Bean 
+                  className="sm:w-full"
+                  component={<TextInput text="Search Applications" />}
+                  icon={<FaSearch className="text-text-secondary" />}
+                />
+                <Bean 
+                  className="sm:w-full"
+                  component={<TextInput text="Search Applications" />}
+                  icon={<FaSearch className="text-text-secondary" />}
+                />
+              </div>
+            </div>
+        </Model>
+      }
       <div className="container mx-auto my-5 flex justify-center max-w-6xl">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-4 justify-items-center w-full">
           <Card 
@@ -97,7 +136,7 @@ const statusList = [
               text="Add Application"
               icon={<FaPlusSquare className="text-text-primary" />}
               bg_color="bg-primary"
-              handleClick={() => alert("This button will open the form to add a new application.")}
+              handleClick={() => setModel(true)}
             />
         </div>
       </div>
@@ -115,6 +154,7 @@ const statusList = [
             {/* table pagination */}
         </div>
       </div>
+
     </>
   )
 }
