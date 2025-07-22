@@ -59,7 +59,7 @@ You can use postman to do this by adding a post req to this path
 ```bash
 http://localhost:3000/api/company
 ```
-the add this req body:
+then add this req body:
 ```bash
 {
   "company_name": "TechNova Solutions",
