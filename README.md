@@ -83,3 +83,4 @@ You can add as many as you want, this will be rendered dynamically in the fronte
 - Creating pagination buttons in the UI
 - Implementing pagination in the backend
 - Calculating statistics about user application  
+- Making the UI really responsive , like super responsive 
