@@ -52,3 +52,34 @@ npm install
 ```bash
 npm run dev
 ```
+---
+### 4.Adding data to the database
+You can use postman to do this by adding a post req to this path
+
+```bash
+http://localhost:3000/api/company
+```
+the add this req body:
+```bash
+{
+  "company_name": "TechNova Solutions",
+  "company_email": "info@technova.io",
+  "company_phone_number": "+962798765432",
+  "company_address": "King Abdullah II Street, Amman, Jordan",
+  "company_linkedin": "https://linkedin.com/company/technova",
+  "company_website": "https://www.technova.io",
+  "company_hr_name": "Omar Al-Khatib",
+  "company_hr_email": "omar.khatib@technova.io",
+  "company_hr_linkedin": "https://linkedin.com/in/omarkhatib",
+  "status": "Interview"
+}
+```
+You can add as many as you want, this will be rendered dynamically in the frontend
+---
+### 5.What remaining tasks are needed to make the project ready?
+- Finishing the form inside the popup model to add a new application and company details  
+- Create an API req to post the form data 
+- Writing the logic of filtering the data inside the table
+- Creating pagination buttons in the UI
+- Implementing pagination in the backend
+- Calculating statistics about user application  
