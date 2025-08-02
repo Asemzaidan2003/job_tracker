@@ -3,13 +3,14 @@ import BlurButton from "./BlurButton"
 import { CgMoreO } from "react-icons/cg";
 import OptionsList from "./OptionsList";
 import TableRow from "./TableRow";
+import {API_URL} from "../config"
 
 const Table = () => {
     const [companies, setCompanies] = useState([]);
 
     useEffect(()=> {
         const fetchCompanies = async ()=>{
-            const res = await fetch("http://localhost:3000/api/company");
+            const res = await fetch(`${API_URL}/company`);
             const data = await res.json();
             setCompanies(data);
         }
@@ -37,7 +38,7 @@ function getColorByStatus(status) {
 }
 const handleStatusChange = async (companyId, newStatus) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/company/${companyId}`, {
+    const res = await fetch(`${API_URL}/company/${companyId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -61,24 +62,25 @@ const handleStatusChange = async (companyId, newStatus) => {
 
 
   return (
-    <table className="w-full text-center">
+    <div className="w-full overflow-x-auto">
+        <table className="min-w-full text-center">
         <thead>
             <tr className="border-b-4 border-border">
-                <th className="px-6 py-3 text-xs font-medium text-text-primary uppercase tracking-wider">
-                    Company name
-                </th>
-                <th className="px-6 py-3 text-xs font-medium text-text-primary uppercase tracking-wider">
-                    company E-mail
-                </th>
-                <th className="px-6 py-3 text-xs font-medium text-text-primary uppercase tracking-wider">
-                    Company phone number
-                </th>
-                <th className="px-6 py-3 text-xs font-medium text-text-primary uppercase tracking-wider">
-                    Status
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-text-primary uppercase tracking-wider">
-                    Other details
-                </th>
+            <th className="px-2 sm:px-6 py-3 text-xs font-medium text-text-primary uppercase tracking-wider whitespace-nowrap">
+                Company name
+            </th>
+            <th className="px-2 sm:px-6 py-3 text-xs font-medium text-text-primary uppercase tracking-wider whitespace-nowrap hidden md:table-cell">
+                company E-mail
+            </th>
+            <th className="px-2 sm:px-6 py-3 text-xs font-medium text-text-primary uppercase tracking-wider whitespace-nowrap hidden lg:table-cell">
+                Company phone number
+            </th>
+            <th className="px-2 sm:px-6 py-3 text-xs font-medium text-text-primary uppercase tracking-wider whitespace-nowrap">
+                Status
+            </th>
+            <th className="px-2 sm:px-6 py-3 text-xs font-medium text-text-primary uppercase tracking-wider whitespace-nowrap">
+                Other details
+            </th>
             </tr>
         </thead>
         <tbody>
@@ -86,35 +88,36 @@ const handleStatusChange = async (companyId, newStatus) => {
             const statusColor = getColorByStatus(company.status);
             return (
                 <TableRow
-                    key={company._id}
-                    companyName={company.company_name}
-                    companyEmail={company.company_email}
-                    companyPhone={company.company_phone_number}
-                    component={
-                        <BlurButton
-                            text={
-                                <OptionsList
-                                    list={statusList}
-                                    applicationValue={company.status}
-                                    iconColor={statusColor}
-                                    text_color={statusColor}
-                                    onChange={(newStatus) => handleStatusChange(company._id, newStatus)}
-                                />
-                            }
-                            borderColor={statusColor}
-                            blurColor={statusColor}
-                            iconRight={true}
+                key={company._id}
+                companyName={company.company_name}
+                companyEmail={company.company_email}
+                companyPhone={company.company_phone_number}
+                component={
+                    <BlurButton
+                    text={
+                        <OptionsList
+                        list={statusList}
+                        applicationValue={company.status}
+                        iconColor={statusColor}
+                        text_color={statusColor}
+                        onChange={(newStatus) => handleStatusChange(company._id, newStatus)}
                         />
                     }
-                    icon={
-                        <CgMoreO className="text-text-secondary w-full h-8 cursor-pointer hover:text-text-primary transition-colors" />
-                    }
+                    borderColor={statusColor}
+                    blurColor={statusColor}
+                    iconRight={true}
+                    />
+                }
+                icon={
+                    <CgMoreO className="text-text-secondary w-full h-8 cursor-pointer hover:text-text-primary transition-colors" />
+                }
                 />
             );
-        })}
+            })}
         </tbody>
-    </table>
-  )
+        </table>
+    </div>
+    );
 }
 
 export default Table

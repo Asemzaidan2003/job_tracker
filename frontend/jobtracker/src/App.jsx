@@ -9,6 +9,7 @@ import Button from "./components/Button"
 import Model from "./components/Model"
 import {useState} from 'react'
 import { IoMdCloseCircle } from "react-icons/io";
+import ApplicationForm from "./components/ApplicationForm"
 function App() {
 const [model , setModel] = useState(false);
 
@@ -31,7 +32,7 @@ const statusList = [
       <Navbar />
       {model && 
         <Model setModel={setModel} >
-            <div className="flex justify-between">
+            <div className="flex justify-between m-4">
               <div>
                 <h1 className="text-base sm:text-2xl md:text-4xl  font-inter font-bold">Add Application</h1>
               </div>
@@ -43,28 +44,12 @@ const statusList = [
                   />
               </div>
             </div>
-            <div className="container p-2">
-              <div className="grid grid-cols-2 justify-center">
-                <Bean 
-                  className="sm:w-full"
-                  component={<TextInput text="Search Applications" />}
-                  icon={<FaSearch className="text-text-secondary" />}
-                />
-                <Bean 
-                  className="sm:w-full"
-                  component={<TextInput text="Search Applications" />}
-                  icon={<FaSearch className="text-text-secondary" />}
-                />
-                <Bean 
-                  className="sm:w-full"
-                  component={<TextInput text="Search Applications" />}
-                  icon={<FaSearch className="text-text-secondary" />}
-                />
-              </div>
+            <div className="container my-4 p-2 space-y-3">
+              <ApplicationForm />
             </div>
         </Model>
       }
-      <div className="container mx-auto my-5 flex justify-center max-w-6xl">
+      <div className="container mx-auto my-5 flex justify-center max-w-5xl">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-4 justify-items-center w-full">
           <Card 
           children={
@@ -114,30 +99,28 @@ const statusList = [
       </div>
       {/* table side */}
       <div className="container mx-auto my-5 flex justify-center">
-        <div className="flex justify-center items-center p-4 space-x-1 w-auto flex-wrap sm:space-x-1 sm:justify-between">
-            {/* table tools */}
-            <Bean 
-            className="sm:w-full"
-            component={<TextInput text="Search Applications" />}
-            icon={<FaSearch className="text-text-secondary" />}
-            />
-            <Bean 
-            text="Status:"
-            component={<OptionsList list={statusList} iconColor="text-secondary"/>}
-
-            iconRight={true}
-            />
-            <Bean 
-            text="Sort by: "
-            component={<OptionsList list={sortList} iconColor="text-secondary"/>}
-            iconRight={true}
-            />
+        <div className="flex justify-around  items-center p-4 space-x-1 space-y-2 w-auto flex-wrap">
+            {/* table tools 
+            */}
             <Button 
               text="Add Application"
               icon={<FaPlusSquare className="text-text-primary" />}
               bg_color="bg-primary"
               handleClick={() => setModel(true)}
             />
+            <Bean 
+            component={<TextInput text="Search Applications" />}
+            icon={<FaSearch className="text-text-secondary" />}
+            />
+            <Bean 
+            text="Status:"
+            component={<OptionsList list={statusList} iconColor="text-secondary"/>}
+            />
+            <Bean 
+            text="Sort by: "
+            component={<OptionsList list={sortList} iconColor="text-secondary"/>}
+            />
+
         </div>
       </div>
       <div className="container flex justify-center mx-auto my-5">

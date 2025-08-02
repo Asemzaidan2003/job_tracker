@@ -77,8 +77,6 @@ then add this req body:
 You can add as many as you want, this will be rendered dynamically in the frontend
 ---
 ### 5.What remaining tasks are needed to make the project ready?
-- Finishing the form inside the popup model to add a new application and company details  
-- Create an API req to post the form data 
 - Writing the logic of filtering the data inside the table
 - Creating pagination buttons in the UI
 - Implementing pagination in the backend

@@ -17,7 +17,7 @@ const companySchema = new mongoose.Schema({
     },
     company_address: {
         type: String,
-        required: true
+        required: false
     },
     company_linkedin: {
         type: String,

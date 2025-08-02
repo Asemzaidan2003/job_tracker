@@ -1,13 +1,16 @@
-const TextInput = ({text}) => {
+const TextInput = ({ text, name, value, onChange }) => {
   return (
-    <div>
+    <div className="w-full">
       <input
         type="text"
-        className="bg-transparent focus:outline-none w-20 sm:w-44 md:w-96"
-        placeholder={`${text}`}
+        name={name}
+        className="bg-transparent focus:outline-none w-full placeholder:text-text-secondary"
+        placeholder={text}
+        value={value}
+        onChange={onChange}
       />
     </div>
-  )
-}
+  );
+};
 
-export default TextInput
+export default TextInput;
