@@ -92,6 +92,7 @@ const handleStatusChange = async (companyId, newStatus) => {
                 companyName={company.company_name}
                 companyEmail={company.company_email}
                 companyPhone={company.company_phone_number}
+                companyOtherDetails={company}
                 component={
                     <BlurButton
                     text={

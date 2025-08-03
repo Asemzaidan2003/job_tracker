@@ -31,6 +31,10 @@ MONGO_URI=mongodb://localhost:27017/job_tracker
 ```
 You can use your own MongoDB Cloud URI if you prefer
 
+Open a new terminal, then
+```bash
+cd ./backend
+```
 Install dependencies
 ```bash
 npm install
