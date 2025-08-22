@@ -1,6 +1,8 @@
 import Model from "./Model";
+import Button from "./Button";
 import { useState } from "react";
 import { IoMdCloseCircle } from "react-icons/io";
+import { API_URL } from "../config";
 
 const TableRow = ({
   companyName,
@@ -11,6 +13,26 @@ const TableRow = ({
   companyOtherDetails,
 }) => {
   const [model, setModel] = useState(false);
+  const token = localStorage.getItem("token");
+
+  async function handleDelete() {
+    if (!token) return;
+
+    try {
+      const res = await fetch(`${API_URL}/company/${companyOtherDetails._id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+
+      window.location.reload();
+    } catch (err) {
+      alert(err.message);
+    }
+  }
 
   return (
     <tr className="border-b-4 border-border last:border-b-0">
@@ -41,7 +63,7 @@ const TableRow = ({
               </button>
             </div>
             <div className="w-full max-w-4xl text-left p-4 space-y-3 break-words">
-              <p className="text-text-secondary">
+              <p className=" text-lg text-text-secondary">
                 Here you can read more details about the application.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 break-words">
@@ -88,16 +110,14 @@ const TableRow = ({
                     <strong className="font-medium text-text-primary">HR LinkedIn:</strong>{" "}
                     {companyOtherDetails.company_hr_linkedin}
                   </p>
-                  <p className="text-lg text-text-secondary mb-1 break-words flex flex-wrap">
-                    <strong className="font-medium text-text-primary">Created At:</strong>{" "}
-                    {companyOtherDetails.createdAt}
-                  </p>
-                  <p className="text-lg text-text-secondary mb-1 break-words flex flex-wrap">
-                    <strong className="font-medium text-text-primary">Updated At:</strong>{" "}
-                    {companyOtherDetails.updatedAt}
-                  </p>
                 </div>
+
               </div>
+                <Button
+                  text="Delete Application"
+                  bg_color="bg-error"
+                  handleClick={handleDelete}
+                  />
             </div>
           </Model>
         )}

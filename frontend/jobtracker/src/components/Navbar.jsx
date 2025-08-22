@@ -1,7 +1,8 @@
 import { FaGithub , FaPlusSquare } from "react-icons/fa"
 import BlurButton from "./BlurButton"
 import Model from "./Model"
-import Card from "./Card"
+import ApplicationForm from "../components/ApplicationForm"
+import { IoMdCloseCircle } from "react-icons/io";
 import { useState } from "react"
 const Navbar = () => {
   const [model , setModel] = useState(false)
@@ -20,23 +21,35 @@ const Navbar = () => {
           blurColor="secondary"
           borderColor="secondary"
           bg_color="surface"
-          handleClick={() => alert("This button will redirect you to the GitHub repository.")}
+          handleClick={() => window.open("https://github.com/Asemzaidan2003/job_tracker", "_blank")}
         />
-        <BlurButton
-          text="Buy me a coffee"
+        <BlurButton 
+          text="Add Application"
           icon={<FaPlusSquare className="text-secondary" />}
-          blurColor="secondary"
-          borderColor="secondary"
-          bg_color="surface"
+          bg_color="bg-primary"
           handleClick={() => setModel(true)}
         />
       </div>
     </div>
-    {model && 
-      <Model setModel={setModel}>
-        <h1>hi from coffee</h1>
-      </Model>
-    }
+      {model && 
+        <Model setModel={setModel} >
+            <div className="flex justify-between m-4">
+              <div>
+                <h1 className="text-base sm:text-2xl md:text-4xl  font-inter font-bold">Add Application</h1>
+              </div>
+              <div className="flex w-12 items-center justify-center">
+                  <IoMdCloseCircle
+                  className="w-6 h-6 sm:w-8 sm:h-8 text-error cursor-pointer hover:text-red-600"
+                  size={32}
+                  onClick={() => setModel(false)}
+                  />
+              </div>
+            </div>
+            <div className="container my-4 p-2 space-y-3">
+              <ApplicationForm />
+            </div>
+        </Model>
+      }
     </>
   )
 }

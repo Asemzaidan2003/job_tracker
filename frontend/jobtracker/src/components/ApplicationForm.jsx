@@ -4,8 +4,8 @@ import Bean from './Bean';
 import Button from './Button';
 import { FaPlusSquare } from 'react-icons/fa';
 import { API_URL } from "../config";
-
 const ApplicationForm = () => {
+  const token = localStorage.getItem("token");
   const [formData, setFormData] = useState({
     company_name: "",
     company_email: "",
@@ -37,15 +37,17 @@ const ApplicationForm = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-        },
+          Authorization: `Bearer ${token}`
+        }, 
         body: JSON.stringify(formData)
       });
 
+      if (res.status === 400) { throw new Error("This company already exists for this user.") }
       if (!res.ok) throw new Error("Error Sending Application data");
 
       window.location.reload();
     } catch (err) {
-      console.error(err);
+      alert(err.message);
     }
   };
 
@@ -63,12 +65,13 @@ const ApplicationForm = () => {
         <Bean component={<TextInput text="HR LinkedIn" name="company_hr_linkedin" value={formData.company_hr_linkedin} onChange={handleChange} />} />
       </div>
 
-      <Button
-        text="Create Application"
-        icon={<FaPlusSquare className="text-text-primary" />}
-        bg_color="bg-success"
-        handleClick={handleSubmit}
-      />
+        <Button
+          text="Create Application"
+          icon={<FaPlusSquare className="text-text-primary" />}
+          bg_color="bg-success"
+          handleClick={handleSubmit}
+          />
+
     </>
   );
 };

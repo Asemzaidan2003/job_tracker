@@ -1,19 +1,24 @@
 import mongoose from "mongoose";
+
 const companySchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+    },
     company_name: {
         type: String,
         required: true,
-        unique: true
     },
     company_email:{
         type: String,
         required: true,
-        unique: true
+
     },
     company_phone_number: {
         type: String,
         required: true,
-        unique: true
+
     },
     company_address: {
         type: String,

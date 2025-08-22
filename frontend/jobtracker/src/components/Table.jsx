@@ -5,12 +5,17 @@ import OptionsList from "./OptionsList";
 import TableRow from "./TableRow";
 import {API_URL} from "../config"
 
-const Table = () => {
+const Table = ({ getAnalyticsOnStatusChange }) => {
+    const token = localStorage.getItem("token");
     const [companies, setCompanies] = useState([]);
 
     useEffect(()=> {
         const fetchCompanies = async ()=>{
-            const res = await fetch(`${API_URL}/company`);
+            const res = await fetch(`${API_URL}/company`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             const data = await res.json();
             setCompanies(data);
         }
@@ -42,12 +47,13 @@ const handleStatusChange = async (companyId, newStatus) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
       },
       body: JSON.stringify({ status: newStatus }),
     });
 
     if (!res.ok) throw new Error("Error updating status");
-
+    getAnalyticsOnStatusChange();
     setCompanies(prevCompanies =>
       prevCompanies.map(company =>
         company._id === companyId ? { ...company, status: newStatus } : company
