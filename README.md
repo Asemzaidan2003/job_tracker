@@ -3,7 +3,7 @@
 This is my first project using the MERN stack (MongoDB, Express.js, React, Node.js).  
 The goal of this project is to track job applications, allowing users to manage the jobs they've applied for in an organized way.
 
-🚧 **Note:** This project is still under development.
+🚧 **Note:** This project is not deployed yet.
 
 ---
 
@@ -28,6 +28,7 @@ use terminal to go to : cd ./backend
 then Create a .env file and add the following line
 ```bash
 MONGO_URI=mongodb://localhost:27017/job_tracker
+JWT_SECRET="YOUR_JWT_SECRET" if you don't have one , create one !
 ```
 You can use your own MongoDB Cloud URI if you prefer
 
@@ -57,9 +58,3 @@ npm install
 npm run dev
 ```
 ---
-### 4.What remaining tasks are needed to make the project ready?
-- Writing the logic of filtering the data inside the table
-- Creating pagination buttons in the UI
-- Implementing pagination in the backend
-- Calculating statistics about user application  
-- Making the UI really responsive , like super responsive 
