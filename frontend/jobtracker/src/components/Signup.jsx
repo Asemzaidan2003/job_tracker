@@ -4,10 +4,10 @@ import Bean from '../components/Bean';
 import BlurButton from '../components/BlurButton';
 import TextInput from '../components/TextInput';
 import {API_URL} from "../config"
-import { useNavigate } from 'react-router-dom'
+
 
 const Signup = () => {
-const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -36,7 +36,7 @@ const handleSignUp = async () => {
     if (res.ok) {
       localStorage.setItem("token", data.token);
 
-      navigate('https://job-tracker-frontend-xlsz.onrender.com/');
+      window.location.replace('https://job-tracker-frontend-xlsz.onrender.com/');
     } else {
       alert(data.message || "Sign up failed!");
     }

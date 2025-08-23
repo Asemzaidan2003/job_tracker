@@ -30,7 +30,7 @@ const Login = () => {
         localStorage.setItem("token", data.token);
 
 
-        navigate('');
+        window.location.replace('https://job-tracker-frontend-xlsz.onrender.com/');
       } else {
         alert(data.message || "Login failed!");
       }
