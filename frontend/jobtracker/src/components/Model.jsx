@@ -24,7 +24,7 @@ const Model = ({ children, setModel }) => {
 
   return (
     <div
-      className={`fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50 p-28 sm:p-12 transition-opacity duration-300 ${
+      className={`fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50 p-6 sm:p-12 transition-opacity duration-300 ${
         show ? "opacity-100" : "opacity-0"
       }`}
       onClick={handleOverlayClick}
