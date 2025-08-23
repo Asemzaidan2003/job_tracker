@@ -36,7 +36,7 @@ const handleSignUp = async () => {
     if (res.ok) {
       localStorage.setItem("token", data.token);
 
-      navigate('/');
+      navigate('https://job-tracker-frontend-xlsz.onrender.com/');
     } else {
       alert(data.message || "Sign up failed!");
     }
