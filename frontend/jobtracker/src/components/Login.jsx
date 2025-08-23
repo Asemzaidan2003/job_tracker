@@ -30,7 +30,7 @@ const Login = () => {
         localStorage.setItem("token", data.token);
 
 
-        navigate('/');
+        navigate('../main.jsx');
       } else {
         alert(data.message || "Login failed!");
       }
